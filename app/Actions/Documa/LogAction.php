@@ -31,15 +31,13 @@ class LogAction
         return [
             [
                 "id" => 1,
-                "name" => "John",
-                "desc" => "did something",
+                "name" => "Supersemar",
                 "date" => "13:11 11/08/2024",
                 "approx" => "3 hour ago"
             ],
             [
                 "id" => 2,
-                "name" => "Doe",
-                "desc" => "goes tantrum",
+                "name" => "Surat PHK",
                 "date" => "14:11 11/08/2024",
                 "approx" => "2 hour ago"
             ]

@@ -2,8 +2,8 @@
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import {usePage} from "@inertiajs/vue3";
 import {onMounted, ref} from "vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import { Link } from '@inertiajs/vue3'
 
 const page = usePage()
 const user = ref()
@@ -28,8 +28,10 @@ const props = defineProps({
                 <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
                     Hello {{ user?.name }}, Welcome to Documa !
                 </h1>
-                <primary-button href="/document" class="flex justify-start mt-2">
-                    Manage Document
+                <primary-button type="button" class="flex justify-start mt-2">
+                    <Link href="/document">
+                        Manage Document
+                    </Link>
                 </primary-button>
             </div>
         </div>

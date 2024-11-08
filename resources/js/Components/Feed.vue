@@ -1,6 +1,7 @@
 <script setup>
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import { DocumentTextIcon} from "@heroicons/vue/24/outline/index.js";
 
 const props = defineProps({
     'feed': {
@@ -26,8 +27,7 @@ const props = defineProps({
             </div>
         </div>
 
-        <div
-            class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
+        <div class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Latest Activity</h3>
                 <div class="space-y-4">
@@ -46,18 +46,16 @@ const props = defineProps({
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Latest Documents</h3>
                 <div class="space-y-4">
-                    <div class="flex items-center space-x-4">
-                        <img src="path_to_file_preview" alt="File" class="w-10 h-10 rounded">
-                        <div>
-                            <p class="text-gray-800 dark:text-gray-200">Document Name</p>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">Details or metadata</p>
+                    <div v-for="document in feed.document" :key="document.id" class="flex items-end space-x-4">
+                        <div class="pb-1">
+                            <DocumentTextIcon class="h-8 w-8 dark:text-white"/>
                         </div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <img src="path_to_file_preview" alt="File" class="w-10 h-10 rounded">
-                        <div>
-                            <p class="text-gray-800 dark:text-gray-200">Another Document</p>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">Details or metadata</p>
+                        <div class="flex flex-col">
+                            <p class="text-gray-800 dark:text-gray-200">{{document.name}}</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">{{ document.approx }}</p>
+                        </div>
+                        <div class="flex-auto text-end">
+                            <p class="text-gray-500 dark:text-gray-400 text-sm ml-2 ">{{ document.date }}</p>
                         </div>
                     </div>
                 </div>

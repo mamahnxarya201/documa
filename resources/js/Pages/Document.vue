@@ -1,7 +1,7 @@
 <script setup>
 
 import AppLayout from "@/Layouts/AppLayout.vue";
-import {ChevronDownIcon} from "@heroicons/vue/24/solid/index.js";
+import {ChevronDownIcon, ArrowTopRightOnSquareIcon} from "@heroicons/vue/24/solid/index.js";
 import {ref} from "vue";
 
 const openDropdown = ref(false)
@@ -79,7 +79,10 @@ function dropDown() {
                                                         </div>
                                                         <div class="flex flex-col">
                                                             <div class="text-xl text-gray-400">Total Files</div>
-                                                            <div class="text-base">10</div>
+                                                            <div class="flex flex-row">
+                                                                <div class="text-base">10</div>
+                                                                <ArrowTopRightOnSquareIcon class="size-4 ml-2" @click="console.log('galo')"/>
+                                                            </div>
                                                         </div>
                                                         <div class="flex flex-col">
                                                             <div class="text-xl text-gray-400">Shared To</div>
@@ -106,7 +109,6 @@ function dropDown() {
                                                             <div class="text-base">Urgent, Base</div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -116,8 +118,6 @@ function dropDown() {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

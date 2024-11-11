@@ -1,20 +1,17 @@
 <script setup>
 
 import AppLayout from "@/Layouts/AppLayout.vue";
-import {ChevronDownIcon, ArrowTopRightOnSquareIcon} from "@heroicons/vue/24/solid/index.js";
-import {computed, ref} from "vue";
+import {ChevronDownIcon, ArrowTopRightOnSquareIcon, ChevronUpIcon} from "@heroicons/vue/24/solid/index.js";
+import {ref} from "vue";
 
 const openDropdown = ref(false)
 const items = ref([{id: 1, name: 'test', openDropdown: false}, {id: 2, name: 'test', openDropdown: false}, {id: 3, name: 'test', openDropdown: false}, {id: 4, name: 'test', openDropdown: false}])
-const trStyling = (idx) =>(
+const trStyling = (idx) => (
     items.value[idx].openDropdown
     ? "text-center bg-gray-100 border-b dark:bg-gray-800 dark:border-gray-700 dark:text-white"
     : "text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-white")
 
-
-function dropDown(idx) {
-    items.value[idx].openDropdown = !items.value[idx].openDropdown;
-}
+const dropDown = (idx) => items.value[idx].openDropdown = !items.value[idx].openDropdown;
 
 </script>
 
@@ -58,7 +55,8 @@ function dropDown(idx) {
                                                         </td>
                                                         <td>
                                                             <button @click="dropDown(key)">
-                                                                <ChevronDownIcon class="text-blue-600 dark:text-blue-500 h-8 w-8" />
+                                                                <ChevronDownIcon v-if="!item.openDropdown" class="text-blue-600 dark:text-blue-500 h-8 w-8" />
+                                                                <ChevronUpIcon v-else class="text-blue-600 dark:text-blue-500 h-8 w-8" />
                                                             </button>
                                                         </td>
                                                     </tr>

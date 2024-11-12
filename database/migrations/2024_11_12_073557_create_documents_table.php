@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->uuid("id")->unique()->primary();
             $table->string('name');
-            $table->foreignUuid('author')->references('id')->on('users')->cascadeOnDelete();
+            $table->bigInteger('author')->references('id')->on('users')->cascadeOnDelete();
             $table->jsonb('shared_to');
             $table->jsonb('notes');
             $table->jsonb('attachment');
             $table->jsonb('comment');
             $table->jsonb('tags');
-            $table->foreignUuid('reviewer')->references('id')->on('users')->cascadeOnDelete();
+            $table->bigInteger('reviewer')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignUuid('status')->references('id')->on('statuses')->cascadeOnDelete();
             $table->timestamps();
         });

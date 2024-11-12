@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('size');
             $table->string('path');
             $table->string('hash');
-            $table->foreignUuid('status')->references('id')->on('status');
+            $table->foreignUuid('status')->references('id')->on('statuses')->cascadeOnDelete();
             $table->timestamps();
         });
     }

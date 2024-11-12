@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid("id")->unique()->primary();
             $table->string('name');
-            $table->foreign('author')->references('id')->on('users');
+            $table->foreignUuid('author')->references('id')->on('users');
             $table->jsonb('shared_to');
             $table->jsonb('notes');
             $table->jsonb('attachment');
             $table->jsonb('comment');
             $table->jsonb('tags');
             $table->foreign('reviewer')->references('id')->on('users');
-            $table->foreign('status')->references('id')->on('status');
+            $table->foreignUuid('status')->references('id')->on('status');
             $table->timestamps();
         });
     }

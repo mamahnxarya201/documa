@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attachments', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('username');
+            $table->string('filename');
+            $table->string('owned_by')->nullable();
+            $table->string('filetype');
+            $table->string('size');
+            $table->string('path');
+            $table->string('hash');
+            $table->foreignUuid('status')->references('id')->on('status');
             $table->timestamps();
         });
     }

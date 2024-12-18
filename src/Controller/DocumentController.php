@@ -157,8 +157,63 @@ class DocumentController extends AbstractController
     #[Route('/document/detail', name: 'document_detail')]
     public function detail(): Response
     {
+        $document = [
+            'id' => 1,
+            'name' => 'Handling Radioactive Pipe',
+            'author' => [
+                'name' => 'John Doe',
+                'role' => 'Yard Supervisor',
+                'tier' => 6
+            ],
+            'type' => 'Service Instruction',
+            'status' => 'Approved',
+            'total_files' => 10,
+            'shared_to' => [
+                [
+                    "id" => 1,
+                    "title" => "Group A",
+                    'color_bg' => '#FFEBEE',
+                    'color_fg' => '#B71C1C'
+                ],
+                [
+                    "id" => 2,
+                    "title" => "Group B",
+                    'color_bg' => '#E3F2FD',
+                    'color_fg' => '#0D47A1'
+                ],
+                [
+                    "id" => 3,
+                    "title" => "Group C",
+                    'color_bg' => '#E8F5E9',
+                    'color_fg' => '#1B5E20'
+                ],
+            ],
+            'tags' => [
+                [
+                    'id' => 1,
+                    'title' => 'NDA',
+                    'color_bg' => '#FFF3E0',
+                    'color_fg' => '#E65100'
+                ],
+                [
+                    'id' => 2,
+                    'title' => 'SI',
+                    'color_bg' => '#FCE4EC',
+                    'color_fg' => '#880E4F'
+                ]
+            ],
+            'created_at' => 1733903863,
+            'published_at' => 1734510603,
+            'last_update' => 1734251403,
+            'reviewed_by' => [
+                'name' => 'Mark Stuart',
+                'role' => 'Quality HSE Reviewer',
+                'tier' => 3
+            ],
+        ];
         return $this->render('document/detail_document.html.twig', [
             'controller_name' => 'DetailController',
+            'document' => $document,
         ]);
     }
 }

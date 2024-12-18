@@ -13,15 +13,16 @@
                 <div class="py-2 d-flex align-items-center">
                     <twig:ux:icon name="tabler:books" class="ms-2" style="width: 57px; height: 65px;"/>
                     <div class="ml-3">
-                        <h3 class="px-2">Title Document</h3>
-                        <h5 class="px-2">Service Instruction</h5>
+                        <h3 class="px-2">{{ document.name }}</h3>
+                        <h5 class="px-2">{{ document.type }}</h5>
                     </div>
                 </div>
                 <div id="vehicle-info-card" class="card mb-4 custom-card" data-scroll-target="vehicleInfo">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <strong>Document Info</strong>
                         <div class="d-flex align-items-center">
-                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue" style="color: blue;"/>
+                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
+                                          style="color: blue;"/>
                             <span class="text-blue" href="list_document.html.twig">Edit</span>
                         </div>
 
@@ -29,17 +30,37 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p><strong>Status:</strong> Active</p>
-                                <p><strong>VIN:</strong> 1FDEE3FLOGDCO3608</p>
-                                <p><strong>Year:</strong> N/A</p>
-                                <p><strong>Color:</strong> N/A</p>
-                                <p><strong>Plate:</strong> ABC123</p>
-                                <p><strong>Make:</strong> N/A</p>
-                                <p><strong>Fleet ID:</strong> N/A</p>
+                                <p>
+                                    <strong>Status:</strong>{% set statusColors = document.status | statusClass %}
+                                    <span class="badge"
+                                          style="background-color: {{ statusColors.bg }}; color: {{ statusColors.fg }}">{{ document.status }}</span>
+                                </p>
+                                <p><strong>Tags:</strong> {% for tag in document.tags %}
+                                        <span class="badge"
+                                              style="background-color: {{ tag.color_bg }}; color: {{ tag.color_fg }}">{{ tag.title }}</span>
+                                    {% endfor %}</p>
+                                <p><strong>Year:</strong> {% for group in document.shared_to %}
+                                        <span class="badge"
+                                              style="background-color: {{ group.color_bg }}; color: {{ group.color_fg }}">{{ group.title }}</span>
+                                    {% endfor %}</p>
+                                <p><strong>Total Files:</strong> {{ document.total_files }}</p>
+                                <p><strong>Created At:</strong> {{ document.created_at|date('d M Y/h:i A') }}</p>
+                                <p><strong>Last Update:</strong> {{ document.last_update|date('d M Y/h:i A') }}</p>
+                                <p><strong>Published At:</strong> {{ document.published_at|date('d M Y/h:i A') }}</p>
                             </div>
                             <div>
-                                <p><strong>Billing Authorization:</strong> Not authorized</p>
-                                <p><strong>Compliance Status:</strong> Not compliant</p>
+                                <p>
+                                    <strong>Author:</strong>
+                                    {% set tierColors = document.author.tier | roleClass %}
+                                    <span class="badge"
+                                          style="background-color: {{ tierColors.bg }}; color: {{ tierColors.fg }}">{{ document.author.name }}</span>
+                                </p>
+                                <p>
+                                    <strong>Reviewed By:</strong>
+                                    {% set tierColors = document.reviewed_by.tier | roleClass %}
+                                    <span class="badge"
+                                          style="background-color: {{ tierColors.bg }}; color: {{ tierColors.fg }}">{{ document.reviewed_by.name }}</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -56,14 +77,24 @@
                             <p><strong>Uploaded:</strong> 12/15/2023 5:11PM</p>
                         </div>
                         <div>
-                            <h6>VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et tortor lorem. Vivamus dui enim, hendrerit non tortor sed, tempor laoreet lectus. Integer euismod neque ac tristique dictum. Aenean nec nibh elementum odio venenatis dictum. Fusce accumsan, mi sed fermentum interdum, nisl libero posuere massa, at molestie ante purus a erat. Donec sit amet augue pellentesque, suscipit sem eget, fermentum elit. Duis ultrices scelerisque urna, sed varius odio. Cras consequat, mauris vitae lacinia accumsan, magna lacus dignissim eros, et maximus neque nisl ac magna. Nam malesuada mauris eu maximus placerat. Etiam eu consequat lorem, id tempor elit. Aenean lobortis, ligula vitae laoreet maximus, felis erat euismod dolor, mollis aliquet mi lacus rhoncus dolor. Sed finibus urna sed sem bibendum placerat. Proin eu augue in felis pellentesque sollicitudin nec id arcu. Nulla dui quam, auctor nec tristique vitae, sodales eget diam. Nullam id accumsan sem, eu ornare eros. Nulla lobortis iaculis placerat. </h6>
+                            <h6>VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et tortor lorem. Vivamus
+                                dui enim, hendrerit non tortor sed, tempor laoreet lectus. Integer euismod neque ac
+                                tristique dictum. Aenean nec nibh elementum odio venenatis dictum. Fusce accumsan, mi
+                                sed fermentum interdum, nisl libero posuere massa, at molestie ante purus a erat. Donec
+                                sit amet augue pellentesque, suscipit sem eget, fermentum elit. Duis ultrices
+                                scelerisque urna, sed varius odio. Cras consequat, mauris vitae lacinia accumsan, magna
+                                lacus dignissim eros, et maximus neque nisl ac magna. Nam malesuada mauris eu maximus
+                                placerat. Etiam eu consequat lorem, id tempor elit. Aenean lobortis, ligula vitae
+                                laoreet maximus, felis erat euismod dolor, mollis aliquet mi lacus rhoncus dolor. Sed
+                                finibus urna sed sem bibendum placerat. Proin eu augue in felis pellentesque
+                                sollicitudin nec id arcu. Nulla dui quam, auctor nec tristique vitae, sodales eget diam.
+                                Nullam id accumsan sem, eu ornare eros. Nulla lobortis iaculis placerat. </h6>
                             <p><strong>Status:</strong> Rejected</p>
                             <p><strong>Uploaded:</strong> 12/15/2023 5:11PM</p>
                         </div>
                     </div>
                 </div>
             </div>
-
 
 
             <div class="col-md-5">
@@ -75,12 +106,16 @@
                                 <strong>Document Title</strong>
                                 <div class="d-flex align-items-center">
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue" style="color: blue;"/>
-                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;" onclick="window.location.href='list_document.html.twig'">Edit</span>
+                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
+                                                      style="color: blue;"/>
+                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
+                                              onclick="window.location.href='list_document.html.twig'">Edit</span>
                                     </div>
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1" style="color: red;"/>
-                                        <span class="text-red no-underline" style="cursor: pointer; color: red;" onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
+                                                      style="color: red;"/>
+                                        <span class="text-red no-underline" style="cursor: pointer; color: red;"
+                                              onclick="window.location.href='list_document.html.twig'">Delete</span>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +142,8 @@
                                         <div class="py-3">
                                             <p class="text-muted">Description:</p>
                                             <p>
-                                                i am so tired, i am so fucking tired and i am felling ill and lonely todayy
+                                                i am so tired, i am so fucking tired and i am felling ill and lonely
+                                                todayy
                                             </p>
                                         </div>
                                     </div>
@@ -117,7 +153,6 @@
                     </div>
 
 
-
                     <!-- Document 1 -->
                     <div class="card mb-4 custom-card">
                         <div class="card h-100 shadow-xl">
@@ -125,12 +160,16 @@
                                 <strong>Project Plan</strong>
                                 <div class="d-flex align-items-center">
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue" style="color: blue;"/>
-                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;" onclick="window.location.href='list_document.html.twig'">Edit</span>
+                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
+                                                      style="color: blue;"/>
+                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
+                                              onclick="window.location.href='list_document.html.twig'">Edit</span>
                                     </div>
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1" style="color: red;"/>
-                                        <span class="text-red no-underline" style="cursor: pointer; color: red;" onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
+                                                      style="color: red;"/>
+                                        <span class="text-red no-underline" style="cursor: pointer; color: red;"
+                                              onclick="window.location.href='list_document.html.twig'">Delete</span>
                                     </div>
                                 </div>
                             </div>
@@ -171,12 +210,16 @@
                                 <strong>Financial Report</strong>
                                 <div class="d-flex align-items-center">
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue" style="color: blue;"/>
-                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;" onclick="window.location.href='list_document.html.twig'">Edit</span>
+                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
+                                                      style="color: blue;"/>
+                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
+                                              onclick="window.location.href='list_document.html.twig'">Edit</span>
                                     </div>
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1" style="color: red;"/>
-                                        <span class="text-red no-underline" style="cursor: pointer; color: red;" onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
+                                                      style="color: red;"/>
+                                        <span class="text-red no-underline" style="cursor: pointer; color: red;"
+                                              onclick="window.location.href='list_document.html.twig'">Delete</span>
                                     </div>
                                 </div>
                             </div>
@@ -217,12 +260,16 @@
                                 <strong>Product Overview</strong>
                                 <div class="d-flex align-items-center">
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue" style="color: blue;"/>
-                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;" onclick="window.location.href='list_document.html.twig'">Edit</span>
+                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
+                                                      style="color: blue;"/>
+                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
+                                              onclick="window.location.href='list_document.html.twig'">Edit</span>
                                     </div>
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1" style="color: red;"/>
-                                        <span class="text-red no-underline" style="cursor: pointer; color: red;" onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
+                                                      style="color: red;"/>
+                                        <span class="text-red no-underline" style="cursor: pointer; color: red;"
+                                              onclick="window.location.href='list_document.html.twig'">Delete</span>
                                     </div>
                                 </div>
                             </div>

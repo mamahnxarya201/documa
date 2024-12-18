@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
+    #[Route(path: '/auth/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
@@ -34,12 +34,18 @@ class LoginController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route(path: '/auth/logout', name: 'app_logout')]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
+    public function onAuthenticationSucces()
+    {
+
+    }
+
+    // TODO implement 2fa later :-)
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route(path: '/enable2fa', name: 'app_login_enable2fa')]
     public function enable2FA(TotpAuthenticatorInterface $authenticator, EntityManagerInterface $manager): Response

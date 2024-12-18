@@ -1,0 +1,43 @@
+.card.custom-card {
+  border: 1px solid #dee2e6;
+  transition: transform 0.2s, box-shadow 0.2s;
+  outline: black;
+
+  .card-header {
+    background-color: white;  /* White background color */
+    padding: 5px 20px;  /* Smaller padding for a smaller header */
+    border-bottom: 1px solid #dee2e6;  /* Optional: Add a border for separation */
+  }
+
+  .card-footer {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;  /* Smaller font size */
+    color: #333;
+  }
+
+  .card-subtitle {
+    margin-bottom: 1rem;
+  }
+
+  .card-text {
+    margin-bottom: 1rem;
+  }
+
+  .badge {
+    font-size: 90%;
+  }
+}
+
+.scrollable-section {
+  overflow-y: auto;
+  padding-right: 10px;  /* Optional: Add some padding for scrollbar spacing */
+}

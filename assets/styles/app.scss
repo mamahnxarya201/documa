@@ -89,5 +89,24 @@ a.no-underline {
 }
 
 
+/* Default state (closed) */
+.accordion-button.collapsed {
+  background-color: white;
+  color: black; /* Adjust text color if necessary */
+}
+
+/* Open state */
+.accordion-button:not(.collapsed) {
+  background-color: #f8f9fa; /* Light background when open */
+  color: black; /* Adjust text color if necessary */
+}
+
+/* Remove the glowing blue outline */
+.accordion-button:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+
 
 

@@ -4,26 +4,28 @@
 
 {% block content %}
         <div class="container">
-            <div class="d-flex justify-content-end py-3 align-items-center">
+            <div class="d-flex justify-content-between py-3 align-items-center">
                 <div class="d-flex align-items-center">
-                    <div class="btn btn-outline-dark btn-sm ms-2 d-flex align-items-center" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: white;">
-                        <twig:ux:icon name="tabler:search" class="icon-sm" />
-                        <span class="ms-2" style="color: black;">Search</span>
+                    <div class="input-group input-group-sm mb-3 border-dark">
+                        <span class="input-group-text border-dark">{{ ux_icon('tabler:search', {'class': 'icon-md'}) }}</span>
+                        <div class="form-floating">
+                            <input type="text" class="form-control border-dark" id="floatingInputGroup1" placeholder="Username">
+                            <label for="floatingInputGroup1">Search</label>
+                        </div>
                     </div>
                 </div>
-                <div class="dropdown d-flex align-items-center ms-4">
-                    <div class="btn btn-outline-dark btn-sm dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" style="background-color: white;">
-                        <twig:ux:icon name="tabler:filter" class="icon-sm" />
-                        <span class="ms-2" style="color: black;">Filter</span>
+                <div class="d-flex align-items-center">
+                    <div class=" d-flex align-items-center ms-4">
+                        <div class="btn btn-outline-dark btn-md d-flex align-items-center" style="background-color: white;">
+                            <twig:ux:icon name="tabler:filter" class="icon-md" />
+                            <span class="ms-2" style="color: black;">Filter</span>
+                        </div>
                     </div>
-                    <div class="dropdown-menu p-3">
-                        <input type="text" class="form-control" placeholder="Search..." />
-                    </div>
-                </div>
-                <div class="d-flex align-items-center ms-4">
-                    <div class="btn btn-outline-dark btn-sm d-flex align-items-center" style="background-color: white;">
-                        <twig:ux:icon name="tabler:sort-descending-2" class="icon-sm" />
-                        <span class="ms-2" style="color: black;">Sort</span>
+                    <div class="d-flex align-items-center ms-4">
+                        <div class="btn btn-outline-dark btn-md d-flex align-items-center" style="background-color: white;">
+                            <twig:ux:icon name="tabler:sort-descending-2" class="icon-md" />
+                            <span class="ms-2" style="color: black;">Sort</span>
+                        </div>
                     </div>
                 </div>
             </div>

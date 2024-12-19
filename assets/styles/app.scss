@@ -62,3 +62,25 @@ a.no-underline {
   text-decoration: none !important;
   color: inherit; /* Ensure it inherits the desired color */
 }
+
+.btn-success {
+  background-color: #AED581 !important; /* Pastel Green */
+  color: #33691E !important; /* Dark Olive */
+  font-weight: bold !important; /* Bold Text */
+}
+
+.btn-primary {
+  background-color: #90CAF9 !important; /* Pastel Blue */
+  color: #0D47A1 !important; /* Dark Blue */
+  font-weight: bold !important; /* Bold Text */
+}
+
+.btn-danger {
+  background-color: #EF9A9A !important; /* Pastel Red */
+  color: #B71C1C !important; /* Dark Red */
+  font-weight: bold !important; /* Bold Text */
+}
+
+
+
+

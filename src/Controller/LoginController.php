@@ -40,11 +40,6 @@ class LoginController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    public function onAuthenticationSucces()
-    {
-
-    }
-
     // TODO implement 2fa later :-)
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route(path: '/enable2fa', name: 'app_login_enable2fa')]

@@ -155,6 +155,16 @@
                         <div class="card h-100 shadow-xl">
                             <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                 <strong>Document Title</strong>
+                                <div class="d-flex align-items-center py-1">
+                                    <button class="btn btn-primary btn-xs">
+                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon"/>
+                                    </button>
+                                    <div class="mx-2 d-flex align-items-center">
+                                        <button class="btn btn-danger btn-xs">
+                                            <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon"/>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -170,26 +180,24 @@
                                                 </h6>
                                                 <span class="badge" style="background-color: #FFE0B2; color: #F57C00;">For Review</span>
                                             </div>
-                                            <div class="col-3 text-end">
-                                                <div class="d-flex align-items-center py-1">
-                                                    <button class="btn btn-primary btn-xs">
-                                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon"/>
-                                                    </button>
-                                                    <div class="mx-2 d-flex align-items-center">
-                                                        <button class="btn btn-danger btn-xs">
-                                                            <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon"/>
+
+
+                                        </div>
+                                    </div>
+                                            <div class="accordion py-3" id="accordionExample">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="headingOne">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                            Description
                                                         </button>
+                                                    </h2>
+                                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                        <div class="accordion-body">
+                                                            <p>I am so tired, I am so tired and I am feeling ill and lonely today.</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr class="my-2 mx-0 w-100" style="border-top: 1px solid;">
-                                            <div>
-                                                <p class="text-muted">Description:</p>
-                                                <p>I am so tired, I am so tired and I am feeling ill and lonely
-                                                    today.</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

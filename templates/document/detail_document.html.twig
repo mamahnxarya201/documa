@@ -18,14 +18,14 @@
                     </div>
                 </div>
                 <div id="vehicle-info-card" class="card mb-4 custom-card" data-scroll-target="vehicleInfo">
-                    <div class="card-header d-flex align-items-center justify-content-between">
+                    <div class="card-header bg-light d-flex align-items-center justify-content-between">
                         <strong>Document Info</strong>
-                        <div class="d-flex align-items-center">
-                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
-                                          style="color: blue;"/>
-                            <span class="text-blue" href="list_document.html.twig">Edit</span>
+                        <div class="d-flex align-items-center py-1">
+                            <button class="btn btn-primary btn-xs">
+                                <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
+                                <span>Edit</span>
+                            </button>
                         </div>
-
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -67,30 +67,31 @@
                 </div>
 
                 <div id="credentials-card" class="card custom-card" data-scroll-target="credentials">
-                    <div class="card-header d-flex align-items-center justify-content-between">
+                    <div class="card-header bg-light d-flex align-items-center justify-content-between">
                         <strong>Notes</strong>
-                        <div class="d-flex align-items-center">
-                            <twig:ux:icon name="tabler:message-2-plus" class="icon-sm svg-icon me-1 icon-blue"
-                                          style="color: blue;"/>
-                            <span class="text-blue" href="list_document.html.twig">Add Notes</span>
+                        <div class="d-flex align-items-center py-1">
+                            <button class="btn btn-success btn-xs">
+                                <twig:ux:icon name="tabler:message-2-plus" class="icon-sm svg-icon me-1"/>
+                                <span>Add Notes</span>
+                            </button>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="card custom-card" data-scroll-target="notes">
-                            <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                 <strong>Inform K3 About new ISO Proposal</strong>
                                 <div class="d-flex align-items-center">
-                                    <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
-                                                      style="color: blue;"/>
-                                        <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
-                                              onclick="window.location.href='list_document.html.twig'">Edit</span>
+                                    <div class="mx-2 d-flex align-items-center py-1">
+                                        <button class="btn btn-primary btn-xs">
+                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
+                                            <span>Edit</span>
+                                        </button>
                                     </div>
                                     <div class="mx-2 d-flex align-items-center">
-                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
-                                                      style="color: red;"/>
-                                        <span class="text-red no-underline" style="cursor: pointer; color: red;"
-                                              onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                        <button class="btn btn-danger btn-xs">
+                                            <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
+                                            <span>Delete</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -138,12 +139,13 @@
                 </div>
             </div>
             <div class="col-md-5 px-0 card custom-card">
-                <div class="card-header d-flex align-items-center justify-content-between">
+                <div class="card-header bg-light d-flex align-items-center justify-content-between">
                     <strong>List Files</strong>
-                    <div class="d-flex align-items-center">
-                        <twig:ux:icon name="tabler:message-2-plus" class="icon-sm svg-icon me-1 icon-blue"
-                                      style="color: blue;"/>
-                        <span class="text-blue" href="list_document.html.twig">Add Notes</span>
+                    <div class="d-flex align-items-center py-1">
+                        <button class="btn btn-success btn-xs">
+                            <twig:ux:icon name="tabler:message-2-plus" class="icon-sm svg-icon me-1"/>
+                            <span>Add Notes</span>
+                        </button>
                     </div>
                 </div>
 
@@ -154,20 +156,19 @@
                         <!-- Document 0 -->
                         <div class="card mb-4 custom-card">
                             <div class="card h-100 shadow-xl">
-                                <div class="card-header d-flex align-items-center justify-content-between">
+                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                     <strong>Document Title</strong>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center py-1">
+
+                                        <button class="btn btn-primary btn-xs">
+                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
+                                            <span>Edit</span>
+                                        </button>
                                         <div class="mx-2 d-flex align-items-center">
-                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
-                                                          style="color: blue;"/>
-                                            <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
-                                                  onclick="window.location.href='list_document.html.twig'">Edit</span>
-                                        </div>
-                                        <div class="mx-2 d-flex align-items-center">
-                                            <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
-                                                          style="color: red;"/>
-                                            <span class="text-red no-underline" style="cursor: pointer; color: red;"
-                                                  onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                            <button class="btn btn-danger btn-xs">
+                                                <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
+                                                <span>Delete</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -208,20 +209,19 @@
                         <!-- Document 1 -->
                         <div class="card mb-4 custom-card">
                             <div class="card h-100 shadow-xl">
-                                <div class="card-header d-flex align-items-center justify-content-between">
+                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                     <strong>Project Plan</strong>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center py-1">
+
+                                        <button class="btn btn-primary btn-xs">
+                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
+                                            <span>Edit</span>
+                                        </button>
                                         <div class="mx-2 d-flex align-items-center">
-                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
-                                                          style="color: blue;"/>
-                                            <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
-                                                  onclick="window.location.href='list_document.html.twig'">Edit</span>
-                                        </div>
-                                        <div class="mx-2 d-flex align-items-center">
-                                            <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
-                                                          style="color: red;"/>
-                                            <span class="text-red no-underline" style="cursor: pointer; color: red;"
-                                                  onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                            <button class="btn btn-danger btn-xs">
+                                                <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
+                                                <span>Delete</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -259,20 +259,19 @@
                         <!-- Document 2 -->
                         <div class="card mb-4 custom-card">
                             <div class="card h-100 shadow-xl">
-                                <div class="card-header d-flex align-items-center justify-content-between">
+                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                     <strong>Financial Report</strong>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center py-1">
+
+                                        <button class="btn btn-primary btn-xs">
+                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
+                                            <span>Edit</span>
+                                        </button>
                                         <div class="mx-2 d-flex align-items-center">
-                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
-                                                          style="color: blue;"/>
-                                            <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
-                                                  onclick="window.location.href='list_document.html.twig'">Edit</span>
-                                        </div>
-                                        <div class="mx-2 d-flex align-items-center">
-                                            <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
-                                                          style="color: red;"/>
-                                            <span class="text-red no-underline" style="cursor: pointer; color: red;"
-                                                  onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                            <button class="btn btn-danger btn-xs">
+                                                <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
+                                                <span>Delete</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -310,20 +309,18 @@
                         <!-- Document 3 -->
                         <div class="card mb-4 custom-card">
                             <div class="card h-100 shadow-xl">
-                                <div class="card-header d-flex align-items-center justify-content-between">
+                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                     <strong>Product Overview</strong>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center py-1">
+                                        <button class="btn btn-primary btn-xs">
+                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
+                                            <span>Edit</span>
+                                        </button>
                                         <div class="mx-2 d-flex align-items-center">
-                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1 icon-blue"
-                                                          style="color: blue;"/>
-                                            <span class="text-blue no-underline" style="cursor: pointer; color: blue;"
-                                                  onclick="window.location.href='list_document.html.twig'">Edit</span>
-                                        </div>
-                                        <div class="mx-2 d-flex align-items-center">
-                                            <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"
-                                                          style="color: red;"/>
-                                            <span class="text-red no-underline" style="cursor: pointer; color: red;"
-                                                  onclick="window.location.href='list_document.html.twig'">Delete</span>
+                                            <button class="btn btn-danger btn-xs">
+                                                <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
+                                                <span>Delete</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

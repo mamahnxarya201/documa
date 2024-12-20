@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class DocumentController extends AbstractController
 {
-    #[Route('/document', name: 'document_list')]
+    #[Route('/document', name: 'app_document_list')]
     public function index(): Response
     {
         $documents = [
@@ -154,7 +154,7 @@ class DocumentController extends AbstractController
         ]);
     }
 
-    #[Route('/document/detail', name: 'document_detail')]
+    #[Route('/document/detail', name: 'app_document_detail')]
     public function detail(): Response
     {
         $document = [

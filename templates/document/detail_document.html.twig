@@ -7,345 +7,327 @@
 {% endblock %}
 
 {% block content %}
-<div class="container" data-controller="scroll">
-    <div class="row">
-        <div id="left-content-card" data-scroll-target="leftContent" class="col-md-7 card p-3 mb-3">
-            <div class="py-2 d-flex align-items-center">
-                <twig:ux:icon name="tabler:books" class="ms-2" style="width: 57px; height: 65px;"/>
-                <div class="ml-3">
-                    <h3 class="px-2">{{ document.name }}</h3>
-                    <h5 class="px-2">{{ document.type }}</h5>
-                </div>
-            </div>
-            <div id="vehicle-info-card" class="card mb-4 custom-card" data-scroll-target="vehicleInfo">
-                <div class="card-header bg-light d-flex align-items-center justify-content-between">
-                    <strong>Document Info</strong>
-                    <div class="d-flex align-items-center py-1">
-                        <button class="btn btn-primary btn-xs">
-                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
-                            <span>Edit</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <p>
-                                <strong>Status:</strong>{% set statusColors = document.status | statusClass %}
-                                <span class="badge"
-                                      style="background-color: {{ statusColors.bg }}; color: {{ statusColors.fg }}">{{ document.status }}</span>
-                            </p>
-                            <p><strong>Tags:</strong> {% for tag in document.tags %}
-                                    <span class="badge"
-                                          style="background-color: {{ tag.color_bg }}; color: {{ tag.color_fg }}">{{ tag.title }}</span>
-                                {% endfor %}</p>
-                            <p><strong>Year:</strong> {% for group in document.shared_to %}
-                                    <span class="badge"
-                                          style="background-color: {{ group.color_bg }}; color: {{ group.color_fg }}">{{ group.title }}</span>
-                                {% endfor %}</p>
-                            <p><strong>Total Files:</strong> {{ document.total_files }}</p>
-                            <p><strong>Created At:</strong> {{ document.created_at|date('d M Y/h:i A') }}</p>
-                            <p><strong>Last Update:</strong> {{ document.last_update|date('d M Y/h:i A') }}</p>
-                            <p><strong>Published At:</strong> {{ document.published_at|date('d M Y/h:i A') }}</p>
-                        </div>
-                        <div>
-                            <p>
-                                <strong>Author:</strong>
-                                {% set tierColors = document.author.tier | roleClass %}
-                                <span class="badge"
-                                      style="background-color: {{ tierColors.bg }}; color: {{ tierColors.fg }}">{{ document.author.name }}</span>
-                            </p>
-                            <p>
-                                <strong>Reviewed By:</strong>
-                                {% set tierColors = document.reviewed_by.tier | roleClass %}
-                                <span class="badge"
-                                      style="background-color: {{ tierColors.bg }}; color: {{ tierColors.fg }}">{{ document.reviewed_by.name }}</span>
-                            </p>
+    <div class="container-fluid px-5" data-controller="scroll">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <div id="left-content-card" data-scroll-target="leftContent" class=" h-100 card p-3 mb-3">
+                    <div class="py-2 d-flex align-items-center">
+                        <twig:ux:icon name="tabler:books" class="ms-2" style="width: 57px; height: 65px;"/>
+                        <div class="ml-3">
+                            <h3 class="px-2">{{ document.name }}</h3>
+                            <h5 class="px-2">{{ document.type }}</h5>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div id="credentials-card" class="card custom-card" data-scroll-target="credentials">
-                <div class="card-header bg-light d-flex align-items-center justify-content-between">
-                    <strong>Notes</strong>
-                    <div class="d-flex align-items-center py-1">
-                        <button class="btn btn-success btn-xs">
-                            <twig:ux:icon name="tabler:message-2-plus" class="icon-sm svg-icon me-1"/>
-                            <span>Add Notes</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card custom-card" data-scroll-target="notes">
+                    <div id="vehicle-info-card" class="card mb-4 custom-card" data-scroll-target="vehicleInfo">
                         <div class="card-header bg-light d-flex align-items-center justify-content-between">
-                            <strong>Inform K3 About new ISO Proposal</strong>
-                            <div class="d-flex align-items-center">
-                                <div class="mx-2 d-flex align-items-center py-1">
-                                    <button class="btn btn-primary btn-xs">
-                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
-                                        <span>Edit</span>
-                                    </button>
-                                </div>
-                                <div class="mx-2 d-flex align-items-center">
-                                    <button class="btn btn-danger btn-xs">
-                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
-                                        <span>Delete</span>
-                                    </button>
-                                </div>
+                            <strong>Document Info</strong>
+                            <div class="d-flex align-items-center py-1">
+                                <button class="btn btn-primary btn-xs">
+                                    <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
+                                    <span>Edit</span>
+                                </button>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="mb-3">
-                                <p>
-                                    <strong>Author:</strong>
-                                    {% set tierColors = document.author.tier | roleClass %}
-                                    <span class="badge"
-                                          style="background-color: {{ tierColors.bg }}; color: {{ tierColors.fg }}">{{ document.author.name }}</span>
-                                </p>
-                                <p><strong>Created At:</strong> 12/15/2023 5:11PM</p>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p>
+                                        <strong>Status:</strong>{% set statusColors = document.status | statusClass %}
+                                        <span class="badge"
+                                              style="background-color: {{ statusColors.bg }}; color: {{ statusColors.fg }}">{{ document.status }}</span>
+                                    </p>
+                                    <p><strong>Tags:</strong> {% for tag in document.tags %}
+                                            <span class="badge"
+                                                  style="background-color: {{ tag.color_bg }}; color: {{ tag.color_fg }}">{{ tag.title }}</span>
+                                        {% endfor %}</p>
+                                    <p><strong>Year:</strong> {% for group in document.shared_to %}
+                                            <span class="badge"
+                                                  style="background-color: {{ group.color_bg }}; color: {{ group.color_fg }}">{{ group.title }}</span>
+                                        {% endfor %}</p>
+                                    <p><strong>Total Files:</strong> {{ document.total_files }}</p>
+                                    <p><strong>Created At:</strong> {{ document.created_at|date('d M Y/h:i A') }}</p>
+                                    <p><strong>Last Update:</strong> {{ document.last_update|date('d M Y/h:i A') }}</p>
+                                    <p><strong>Published At:</strong> {{ document.published_at|date('d M Y/h:i A') }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        <strong>Author:</strong>
+                                        {% set tierColors = document.author.tier | roleClass %}
+                                        <span class="badge"
+                                              style="background-color: {{ tierColors.bg }}; color: {{ tierColors.fg }}">{{ document.author.name }}</span>
+                                    </p>
+                                    <p>
+                                        <strong>Reviewed By:</strong>
+                                        {% set tierColors = document.reviewed_by.tier | roleClass %}
+                                        <span class="badge"
+                                              style="background-color: {{ tierColors.bg }}; color: {{ tierColors.fg }}">{{ document.reviewed_by.name }}</span>
+                                    </p>
+                                </div>
                             </div>
-                            <div>
-                                <h6>VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et tortor lorem.
-                                    Vivamus
-                                    dui enim, hendrerit non tortor sed, tempor laoreet lectus. Integer euismod neque
-                                    ac
-                                    tristique dictum. Aenean nec nibh elementum odio venenatis dictum. Fusce
-                                    accumsan,
-                                    mi
-                                    sed fermentum interdum, nisl libero posuere massa, at molestie ante purus a
-                                    erat.
-                                    Donec
-                                    sit amet augue pellentesque, suscipit sem eget, fermentum elit. Duis ultrices
-                                    scelerisque urna, sed varius odio. Cras consequat, mauris vitae lacinia
-                                    accumsan,
-                                    magna
-                                    lacus dignissim eros, et maximus neque nisl ac magna. Nam malesuada mauris eu
-                                    maximus
-                                    placerat. Etiam eu consequat lorem, id tempor elit. Aenean lobortis, ligula
-                                    vitae
-                                    laoreet maximus, felis erat euismod dolor, mollis aliquet mi lacus rhoncus
-                                    dolor.
-                                    Sed
-                                    finibus urna sed sem bibendum placerat. Proin eu augue in felis pellentesque
-                                    sollicitudin nec id arcu. Nulla dui quam, auctor nec tristique vitae, sodales
-                                    eget
-                                    diam.
-                                    Nullam id accumsan sem, eu ornare eros. Nulla lobortis iaculis placerat. </h6>
+                        </div>
+                    </div>
+                    <div id="credentials-card" class="card custom-card" data-scroll-target="credentials">
+                        <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                            <strong>Notes</strong>
+                            <div class="d-flex align-items-center py-1">
+                                <button class="btn btn-success btn-xs">
+                                    <twig:ux:icon name="tabler:message-2-plus" class="icon-sm svg-icon me-1"/>
+                                    <span>Add Notes</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card custom-card" data-scroll-target="notes">
+                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                    <strong>Inform K3 About new ISO Proposal</strong>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mx-2 d-flex align-items-center py-1">
+                                            <button class="btn btn-primary btn-xs">
+                                                <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                        <div class="mx-2 d-flex align-items-center">
+                                            <button class="btn btn-danger btn-xs">
+                                                <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
+                                                <span>Delete</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <p>
+                                            <strong>Author:</strong>
+                                            {% set tierColors = document.author.tier | roleClass %}
+                                            <span class="badge"
+                                                  style="background-color: {{ tierColors.bg }}; color: {{ tierColors.fg }}">{{ document.author.name }}</span>
+                                        </p>
+                                        <p><strong>Created At:</strong> 12/15/2023 5:11PM</p>
+                                    </div>
+                                    <div>
+                                        <h6>VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et tortor
+                                            lorem.
+                                            Vivamus
+                                            dui enim, hendrerit non tortor sed, tempor laoreet lectus. Integer euismod
+                                            neque
+                                            ac
+                                            tristique dictum. Aenean nec nibh elementum odio venenatis dictum. Fusce
+                                            accumsan,
+                                            mi
+                                            sed fermentum interdum, nisl libero posuere massa, at molestie ante purus a
+                                            erat.
+                                            Donec
+                                            sit amet augue pellentesque, suscipit sem eget, fermentum elit. Duis
+                                            ultrices
+                                            scelerisque urna, sed varius odio. Cras consequat, mauris vitae lacinia
+                                            accumsan,
+                                            magna
+                                            lacus dignissim eros, et maximus neque nisl ac magna. Nam malesuada mauris
+                                            eu
+                                            maximus
+                                            placerat. Etiam eu consequat lorem, id tempor elit. Aenean lobortis, ligula
+                                            vitae
+                                            laoreet maximus, felis erat euismod dolor, mollis aliquet mi lacus rhoncus
+                                            dolor.
+                                            Sed
+                                            finibus urna sed sem bibendum placerat. Proin eu augue in felis pellentesque
+                                            sollicitudin nec id arcu. Nulla dui quam, auctor nec tristique vitae,
+                                            sodales
+                                            eget
+                                            diam.
+                                            Nullam id accumsan sem, eu ornare eros. Nulla lobortis iaculis
+                                            placerat. </h6>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-5 px-0 card custom-card">
-            <div class="card-header bg-light d-flex align-items-center justify-content-between">
-                <strong>List Files</strong>
-                <div class="d-flex align-items-center py-1">
-                    <button class="btn btn-success btn-xs">
-                        <twig:ux:icon name="tabler:message-2-plus" class="icon-sm svg-icon me-1"/>
-                        <span>Add Notes</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <div id="scrollable-section" class="scrollable-section" data-scroll-target="scrollableSection">
-                    <div class="card mb-4 custom-card">
-                        <div class="card h-100 shadow-xl">
-                            <div class="card-header bg-light d-flex align-items-center justify-content-between">
-                                <strong>Document Title</strong>
-                                <div class="d-flex align-items-center py-1">
-                                    <button class="btn btn-primary btn-xs">
-                                        <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon"/>
-                                    </button>
-                                    <div class="mx-2 d-flex align-items-center">
-                                        <button class="btn btn-danger btn-xs">
-                                            <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon"/>
-                                        </button>
-                                    </div>
-                                </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class=" card h-100 p-3">
+                    <div class="h-100 px-0 card custom-card">
+                        <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                            <strong>List Files</strong>
+                            <div class="d-flex align-items-center py-1">
+                                <button class="btn btn-success btn-xs">
+                                    <twig:ux:icon name="tabler:message-2-plus" class="icon-sm svg-icon me-1"/>
+                                    <span>Add Notes</span>
+                                </button>
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <twig:ux:icon name="tabler:file-type-pdf" class="icon-lg"/>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row justify-content-between">
-                                            <div class="col-8">
-                                                <h5 class="text-start">Document Filename</h5>
-                                                <h6 class="mb-2 mt-2 text-start">
-                                                    <span>16 Dec 2024/01:51 AM</span>
-                                                </h6>
-                                                <span class="badge" style="background-color: #FFE0B2; color: #F57C00;">For Review</span>
+                        </div>
+                        <div class="card-body">
+                            <div id="scrollable-section" class="scrollable-section"
+                                 data-scroll-target="scrollableSection">
+                                <div class="card mb-3 custom-card">
+                                    <div class="card shadow-xl">
+                                        <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                            <strong>Document Title</strong>
+                                            <div class="d-flex align-items-center py-1">
+                                                <button class="btn btn-primary btn-xs">
+                                                    <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon"/>
+                                                </button>
+                                                <div class="mx-2 d-flex align-items-center">
+                                                    <button class="btn btn-danger btn-xs">
+                                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon"/>
+                                                    </button>
+                                                </div>
                                             </div>
-
-
                                         </div>
-                                    </div>
-                                            <div class="accordion py-3" id="accordionExample">
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingOne">
-                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                            Description
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <p>I am so tired, I am so tired and I am feeling ill and lonely today.</p>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <twig:ux:icon name="tabler:file-type-pdf" class="icon-lg"/>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="row justify-content-between">
+                                                        <div class="col-8">
+                                                            <h5 class="text-start">Document Filename</h5>
+                                                            <h6 class="mb-2 mt-2 text-start">
+                                                                <span>16 Dec 2024/01:51 AM</span>
+                                                            </h6>
+                                                            <span class="badge"
+                                                                  style="background-color: #FFE0B2; color: #F57C00;">For Review</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion py-3" id="accordionExample">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="headingOne">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#collapseOne"
+                                                                    aria-expanded="false" aria-controls="collapseOne">
+                                                                Description
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseOne" class="accordion-collapse collapse"
+                                                             aria-labelledby="headingOne"
+                                                             data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <p>I am so tired, I am so tired and I am feeling ill and
+                                                                    lonely
+                                                                    today.</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                        <!-- Document 1 -->
-                        <div class="card mb-4 custom-card">
-                            <div class="card h-100 shadow-xl">
-                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
-                                    <strong>Project Plan</strong>
-                                    <div class="d-flex align-items-center py-1">
-
-                                        <button class="btn btn-primary btn-xs">
-                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
-                                            <span>Edit</span>
-                                        </button>
-                                        <div class="mx-2 d-flex align-items-center">
-                                            <button class="btn btn-danger btn-xs">
-                                                <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
-                                                <span>Delete</span>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <twig:ux:icon name="tabler:file-type-docx" class="icon-lg"/>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row justify-content-between">
-                                                <div class="col-8">
-                                                    <h5 class="text-start">Project_Plan.docx</h5>
-                                                    <h6 class="card-subtitle mb-2 mt-2 text-start">
-                                                        <span class="text-primary">View Files</span>
-                                                        <span style="margin: 0 10px;">&bullet;</span>
-                                                        01 Jan 2025/09:00 AM
-                                                    </h6>
-                                                </div>
-                                                <div class="col-4 text-end">
-                                                    <span class="badge"
-                                                          style="background-color: #FFE0B2; color: #F57C00;">For Review</span>
+                                <div class="card mb-3 custom-card">
+                                    <div class="card shadow-xl">
+                                        <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                            <strong>Document Title</strong>
+                                            <div class="d-flex align-items-center py-1">
+                                                <button class="btn btn-primary btn-xs">
+                                                    <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon"/>
+                                                </button>
+                                                <div class="mx-2 d-flex align-items-center">
+                                                    <button class="btn btn-danger btn-xs">
+                                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon"/>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <hr class="my-2 mx-0 w-100" style="border-top: 1px solid;">
-                                            <div class="py-3">
-                                                <p class="text-muted">Description:</p>
-                                                <p>Detailed project plan for Q1 2025 activities.</p>
-                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Document 2 -->
-                        <div class="card mb-4 custom-card">
-                            <div class="card h-100 shadow-xl">
-                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
-                                    <strong>Financial Report</strong>
-                                    <div class="d-flex align-items-center py-1">
-
-                                        <button class="btn btn-primary btn-xs">
-                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
-                                            <span>Edit</span>
-                                        </button>
-                                        <div class="mx-2 d-flex align-items-center">
-                                            <button class="btn btn-danger btn-xs">
-                                                <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
-                                                <span>Delete</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <twig:ux:icon name="tabler:file-type-xls" class="icon-lg"/>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row justify-content-between">
-                                                <div class="col-8">
-                                                    <h5 class="text-start">Financial_Report.xlsx</h5>
-                                                    <h6 class="card-subtitle mb-2 mt-2 text-start">
-                                                        <span class="text-primary">View Files</span>
-                                                        <span style="margin: 0 10px;">&bullet;</span>
-                                                        05 Feb 2025/02:30 PM
-                                                    </h6>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <twig:ux:icon name="tabler:file-type-pdf" class="icon-lg"/>
                                                 </div>
-                                                <div class="col-4 text-end">
-                                                    <span class="badge"
-                                                          style="background-color: #D1E7DD; color: #0F5132;">Reviewed</span>
+                                                <div class="col">
+                                                    <div class="row justify-content-between">
+                                                        <div class="col-8">
+                                                            <h5 class="text-start">Document Filename</h5>
+                                                            <h6 class="mb-2 mt-2 text-start">
+                                                                <span>16 Dec 2024/01:51 AM</span>
+                                                            </h6>
+                                                            <span class="badge"
+                                                                  style="background-color: #FFE0B2; color: #F57C00;">For Review</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <hr class="my-2 mx-0 w-100" style="border-top: 1px solid;">
-                                            <div class="py-3">
-                                                <p class="text-muted">Description:</p>
-                                                <p>Quarterly financial performance analysis.</p>
+                                                <div class="accordion py-3" id="accordionExample">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="headingOne">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#collapseOne"
+                                                                    aria-expanded="false" aria-controls="collapseOne">
+                                                                Description
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseOne" class="accordion-collapse collapse"
+                                                             aria-labelledby="headingOne"
+                                                             data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <p>I am so tired, I am so tired and I am feeling ill and
+                                                                    lonely
+                                                                    today.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Document 3 -->
-                        <div class="card mb-4 custom-card">
-                            <div class="card h-100 shadow-xl">
-                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
-                                    <strong>Product Overview</strong>
-                                    <div class="d-flex align-items-center py-1">
-                                        <button class="btn btn-primary btn-xs">
-                                            <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon me-1"/>
-                                            <span>Edit</span>
-                                        </button>
-                                        <div class="mx-2 d-flex align-items-center">
-                                            <button class="btn btn-danger btn-xs">
-                                                <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon me-1"/>
-                                                <span>Delete</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <twig:ux:icon name="tabler:file-type-jpg" class="icon-lg"/>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row justify-content-between">
-                                                <div class="col-8">
-                                                    <h5 class="text-start">Product_Overview.png</h5>
-                                                    <h6 class="card-subtitle mb-2 mt-2 text-start">
-                                                        <span class="text-primary">View Files</span>
-                                                        <span style="margin: 0 10px;">&bullet;</span>
-                                                        20 Mar 2025/10:00 AM
-                                                    </h6>
-                                                </div>
-                                                <div class="col-4 text-end">
-                                                    <span class="badge"
-                                                          style="background-color: #FFF3CD; color: #856404;">Pending Review</span>
+                                <div class="card mb-3 custom-card">
+                                    <div class="card shadow-xl">
+                                        <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                            <strong>Document Title</strong>
+                                            <div class="d-flex align-items-center py-1">
+                                                <button class="btn btn-primary btn-xs">
+                                                    <twig:ux:icon name="tabler:pencil" class="icon-sm svg-icon"/>
+                                                </button>
+                                                <div class="mx-2 d-flex align-items-center">
+                                                    <button class="btn btn-danger btn-xs">
+                                                        <twig:ux:icon name="tabler:trash" class="icon-sm svg-icon"/>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <hr class="my-2 mx-0 w-100" style="border-top: 1px solid;">
-                                            <div class="py-3">
-                                                <p class="text-muted">Description:</p>
-                                                <p>Image detailing the product's features and specifications.</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <twig:ux:icon name="tabler:file-type-pdf" class="icon-lg"/>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="row justify-content-between">
+                                                        <div class="col-8">
+                                                            <h5 class="text-start">Document Filename</h5>
+                                                            <h6 class="mb-2 mt-2 text-start">
+                                                                <span>16 Dec 2024/01:51 AM</span>
+                                                            </h6>
+                                                            <span class="badge"
+                                                                  style="background-color: #FFE0B2; color: #F57C00;">For Review</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion py-3" id="accordionExample">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="headingOne">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#collapseOne"
+                                                                    aria-expanded="false" aria-controls="collapseOne">
+                                                                Description
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseOne" class="accordion-collapse collapse"
+                                                             aria-labelledby="headingOne"
+                                                             data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <p>I am so tired, I am so tired and I am feeling ill and
+                                                                    lonely
+                                                                    today.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -357,5 +339,5 @@
             </div>
         </div>
     </div>
-    {% endblock %}
+{% endblock %}
 

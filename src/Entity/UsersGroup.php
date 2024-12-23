@@ -53,6 +53,12 @@ class UsersGroup
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'user_id', orphanRemoval: true)]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, ApplicationLogs>
+     */
+    #[ORM\OneToMany(targetEntity: ApplicationLogs::class, mappedBy: 'user_id')]
+    private Collection $applicationLogs;
+
 
 
     public function __construct()
@@ -61,6 +67,7 @@ class UsersGroup
         $this->documents = new ArrayCollection();
         $this->documents_reviewed = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->applicationLogs = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -201,6 +208,36 @@ class UsersGroup
             // set the owning side to null (unless already changed)
             if ($comment->getUserId() === $this) {
                 $comment->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ApplicationLogs>
+     */
+    public function getApplicationLogs(): Collection
+    {
+        return $this->applicationLogs;
+    }
+
+    public function addApplicationLog(ApplicationLogs $applicationLog): static
+    {
+        if (!$this->applicationLogs->contains($applicationLog)) {
+            $this->applicationLogs->add($applicationLog);
+            $applicationLog->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApplicationLog(ApplicationLogs $applicationLog): static
+    {
+        if ($this->applicationLogs->removeElement($applicationLog)) {
+            // set the owning side to null (unless already changed)
+            if ($applicationLog->getUserId() === $this) {
+                $applicationLog->setUserId(null);
             }
         }
 

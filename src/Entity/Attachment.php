@@ -18,7 +18,7 @@ class Attachment
 
     #[ORM\ManyToOne(inversedBy: 'attachments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?UsersGroup $user_group_id = null;
+    private ?UsersGroup $user_group = null;
 
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
@@ -42,21 +42,21 @@ class Attachment
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'attachments')]
-    private ?Status $status_id = null;
+    private ?Status $status = null;
 
     public function getId(): ?Uuid
     {
         return $this->id;
     }
 
-    public function getUserGroupId(): ?UsersGroup
+    public function getUserGroup(): ?UsersGroup
     {
-        return $this->user_group_id;
+        return $this->user_group;
     }
 
-    public function setUserGroupId(?UsersGroup $user_group_id): static
+    public function setUserGroup(?UsersGroup $user_group): static
     {
-        $this->user_group_id = $user_group_id;
+        $this->user_group = $user_group;
 
         return $this;
     }
@@ -145,14 +145,14 @@ class Attachment
         return $this;
     }
 
-    public function getStatusId(): ?Status
+    public function getStatus(): ?Status
     {
-        return $this->status_id;
+        return $this->status;
     }
 
-    public function setStatusId(?Status $status_id): static
+    public function setStatus(?Status $status): static
     {
-        $this->status_id = $status_id;
+        $this->status = $status;
 
         return $this;
     }

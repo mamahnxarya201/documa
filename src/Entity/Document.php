@@ -23,21 +23,21 @@ class Document
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?UsersGroup $author_id = null;
+    private ?UsersGroup $author = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?UsersGroup $reviewer_id = null;
+    private ?UsersGroup $reviewer = null;
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
-    private ?tags $tags_id = null;
+    private ?tags $tags = null;
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?status $status_id = null;
+    private ?status $status = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -73,14 +73,14 @@ class Document
         return $this;
     }
 
-    public function getAuthorId(): ?UsersGroup
+    public function getAuthor(): ?UsersGroup
     {
-        return $this->author_id;
+        return $this->author;
     }
 
-    public function setAuthorId(?UsersGroup $author_id): static
+    public function setAuthor(?UsersGroup $author): static
     {
-        $this->author_id = $author_id;
+        $this->author = $author;
 
         return $this;
     }
@@ -97,38 +97,38 @@ class Document
         return $this;
     }
 
-    public function getReviewerId(): ?UsersGroup
+    public function getReviewer(): ?UsersGroup
     {
-        return $this->reviewer_id;
+        return $this->reviewer;
     }
 
-    public function setReviewerId(?UsersGroup $reviewer_id): static
+    public function setReviewer(?UsersGroup $reviewer): static
     {
-        $this->reviewer_id = $reviewer_id;
+        $this->reviewer = $reviewer;
 
         return $this;
     }
 
-    public function getTagsId(): ?tags
+    public function getTags(): ?tags
     {
-        return $this->tags_id;
+        return $this->tags;
     }
 
-    public function setTagsId(?tags $tags_id): static
+    public function setTags(?tags $tags): static
     {
-        $this->tags_id = $tags_id;
+        $this->tags = $tags;
 
         return $this;
     }
 
-    public function getStatusId(): ?status
+    public function getStatus(): ?status
     {
-        return $this->status_id;
+        return $this->status;
     }
 
-    public function setStatusId(?status $status_id): static
+    public function setStatus(?status $status): static
     {
-        $this->status_id = $status_id;
+        $this->status = $status;
 
         return $this;
     }
@@ -169,7 +169,7 @@ class Document
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
-            $comment->setDocumentId($this);
+            $comment->setDocument($this);
         }
 
         return $this;
@@ -179,8 +179,8 @@ class Document
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($comment->getDocumentId() === $this) {
-                $comment->setDocumentId(null);
+            if ($comment->getDocument() === $this) {
+                $comment->setDocument(null);
             }
         }
 

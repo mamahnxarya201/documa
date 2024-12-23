@@ -17,7 +17,7 @@ class Session
     private ?Uuid $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'sessions')]
-    private ?User $user_id = null;
+    private ?User $user = null;
 
     #[ORM\Column(length: 255)]
     private ?string $ip_address = null;
@@ -31,22 +31,19 @@ class Session
     #[ORM\Column]
     private ?\DateTimeImmutable $last_logout = null;
 
-    #[ORM\Column(type: 'uuid')]
-    private ?Uuid $session_id = null;
-
     public function getId(): ?Uuid
     {
         return $this->id;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): static
+    public function setUser(?User $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

@@ -17,7 +17,7 @@ class ApplicationLogs
     private ?Uuid $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'applicationLogs')]
-    private ?UsersGroup $user_id = null;
+    private ?UsersGroup $user = null;
 
     #[ORM\Column(length: 255)]
     private ?string $user_type = null;
@@ -26,7 +26,7 @@ class ApplicationLogs
     private ?string $event_type = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $target_id = null;
+    private ?string $target = null;
 
     #[ORM\Column(length: 255)]
     private ?string $target_type = null;
@@ -42,14 +42,14 @@ class ApplicationLogs
         return $this->id;
     }
 
-    public function getUserId(): ?UsersGroup
+    public function getUser(): ?UsersGroup
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?UsersGroup $user_id): static
+    public function setUser(?UsersGroup $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
@@ -78,14 +78,14 @@ class ApplicationLogs
         return $this;
     }
 
-    public function getTargetId(): ?string
+    public function getTarget(): ?string
     {
-        return $this->target_id;
+        return $this->target;
     }
 
-    public function setTargetId(string $target_id): static
+    public function setTarget(string $target): static
     {
-        $this->target_id = $target_id;
+        $this->target = $target;
 
         return $this;
     }

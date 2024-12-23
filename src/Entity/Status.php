@@ -120,7 +120,7 @@ class Status
     {
         if (!$this->groupInvitations->contains($groupInvitation)) {
             $this->groupInvitations->add($groupInvitation);
-            $groupInvitation->setStatusId($this);
+            $groupInvitation->setStatus($this);
         }
 
         return $this;
@@ -130,8 +130,8 @@ class Status
     {
         if ($this->groupInvitations->removeElement($groupInvitation)) {
             // set the owning side to null (unless already changed)
-            if ($groupInvitation->getStatusId() === $this) {
-                $groupInvitation->setStatusId(null);
+            if ($groupInvitation->getStatus() === $this) {
+                $groupInvitation->setStatus(null);
             }
         }
 
@@ -150,7 +150,7 @@ class Status
     {
         if (!$this->attachments->contains($attachment)) {
             $this->attachments->add($attachment);
-            $attachment->setStatusId($this);
+            $attachment->setStatus($this);
         }
 
         return $this;
@@ -160,8 +160,8 @@ class Status
     {
         if ($this->attachments->removeElement($attachment)) {
             // set the owning side to null (unless already changed)
-            if ($attachment->getStatusId() === $this) {
-                $attachment->setStatusId(null);
+            if ($attachment->getStatus() === $this) {
+                $attachment->setStatus(null);
             }
         }
 
@@ -180,7 +180,7 @@ class Status
     {
         if (!$this->documents->contains($document)) {
             $this->documents->add($document);
-            $document->setStatusId($this);
+            $document->setStatus($this);
         }
 
         return $this;
@@ -190,8 +190,8 @@ class Status
     {
         if ($this->documents->removeElement($document)) {
             // set the owning side to null (unless already changed)
-            if ($document->getStatusId() === $this) {
-                $document->setStatusId(null);
+            if ($document->getStatus() === $this) {
+                $document->setStatus(null);
             }
         }
 

@@ -91,7 +91,7 @@ class UsersGroupRole
     {
         if (!$this->usersGroups->contains($usersGroup)) {
             $this->usersGroups->add($usersGroup);
-            $usersGroup->setRoleId($this);
+            $usersGroup->setRole($this);
         }
 
         return $this;
@@ -101,8 +101,8 @@ class UsersGroupRole
     {
         if ($this->usersGroups->removeElement($usersGroup)) {
             // set the owning side to null (unless already changed)
-            if ($usersGroup->getRoleId() === $this) {
-                $usersGroup->setRoleId(null);
+            if ($usersGroup->getRole() === $this) {
+                $usersGroup->setRole(null);
             }
         }
 

@@ -231,7 +231,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     {
         if (!$this->sessions->contains($session)) {
             $this->sessions->add($session);
-            $session->setUserId($this);
+            $session->setUser($this);
         }
 
         return $this;
@@ -241,8 +241,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     {
         if ($this->sessions->removeElement($session)) {
             // set the owning side to null (unless already changed)
-            if ($session->getUserId() === $this) {
-                $session->setUserId(null);
+            if ($session->getUser() === $this) {
+                $session->setUser(null);
             }
         }
 
@@ -261,7 +261,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     {
         if (!$this->usersGroups->contains($usersGroup)) {
             $this->usersGroups->add($usersGroup);
-            $usersGroup->setUserId($this);
+            $usersGroup->setUser($this);
         }
 
         return $this;
@@ -271,8 +271,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     {
         if ($this->usersGroups->removeElement($usersGroup)) {
             // set the owning side to null (unless already changed)
-            if ($usersGroup->getUserId() === $this) {
-                $usersGroup->setUserId(null);
+            if ($usersGroup->getUser() === $this) {
+                $usersGroup->setUser(null);
             }
         }
 

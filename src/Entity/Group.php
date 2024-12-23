@@ -114,7 +114,7 @@ class Group
     {
         if (!$this->groupInvitations->contains($groupInvitation)) {
             $this->groupInvitations->add($groupInvitation);
-            $groupInvitation->setGroupId($this);
+            $groupInvitation->setGroup($this);
         }
 
         return $this;
@@ -124,8 +124,8 @@ class Group
     {
         if ($this->groupInvitations->removeElement($groupInvitation)) {
             // set the owning side to null (unless already changed)
-            if ($groupInvitation->getGroupId() === $this) {
-                $groupInvitation->setGroupId(null);
+            if ($groupInvitation->getGroup() === $this) {
+                $groupInvitation->setGroup(null);
             }
         }
 
@@ -144,7 +144,7 @@ class Group
     {
         if (!$this->usersGroups->contains($usersGroup)) {
             $this->usersGroups->add($usersGroup);
-            $usersGroup->setGroupId($this);
+            $usersGroup->setGroup($this);
         }
 
         return $this;
@@ -154,8 +154,8 @@ class Group
     {
         if ($this->usersGroups->removeElement($usersGroup)) {
             // set the owning side to null (unless already changed)
-            if ($usersGroup->getGroupId() === $this) {
-                $usersGroup->setGroupId(null);
+            if ($usersGroup->getGroup() === $this) {
+                $usersGroup->setGroup(null);
             }
         }
 

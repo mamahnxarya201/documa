@@ -121,7 +121,7 @@ class Tags
     {
         if (!$this->documents->contains($document)) {
             $this->documents->add($document);
-            $document->setTagsId($this);
+            $document->setTags($this);
         }
 
         return $this;
@@ -131,8 +131,8 @@ class Tags
     {
         if ($this->documents->removeElement($document)) {
             // set the owning side to null (unless already changed)
-            if ($document->getTagsId() === $this) {
-                $document->setTagsId(null);
+            if ($document->getTags() === $this) {
+                $document->setTags(null);
             }
         }
 

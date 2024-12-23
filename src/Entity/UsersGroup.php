@@ -20,14 +20,14 @@ class UsersGroup
 
     #[ORM\ManyToOne(inversedBy: 'usersGroups')]
     #[ORM\JoinColumn(nullable: false)]
-    private group $group_id;
+    private group $group;
 
     #[ORM\ManyToOne(inversedBy: 'usersGroups')]
     #[ORM\JoinColumn(nullable: false)]
-    private User $user_id;
+    private User $user;
 
     #[ORM\ManyToOne(inversedBy: 'usersGroups')]
-    private UsersGroupRole $role_id;
+    private UsersGroupRole $role;
 
     /**
      * @var Collection<int, Attachment>
@@ -75,38 +75,38 @@ class UsersGroup
         return $this->id;
     }
 
-    public function getGroupId(): group
+    public function getGroup(): group
     {
-        return $this->group_id;
+        return $this->group;
     }
 
-    public function setGroupId(group $group_id): static
+    public function setGroup(group $group): static
     {
-        $this->group_id = $group_id;
+        $this->group = $group;
 
         return $this;
     }
 
-    public function getUserId(): User
+    public function getUser(): User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(User $user_id): static
+    public function setUser(User $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getRoleId(): ?UsersGroupRole
+    public function getRole(): ?UsersGroupRole
     {
-        return $this->role_id;
+        return $this->role;
     }
 
-    public function setRoleId(UsersGroupRole $role_id): static
+    public function setRole(UsersGroupRole $role): static
     {
-        $this->role_id = $role_id;
+        $this->role = $role;
 
         return $this;
     }
@@ -123,7 +123,7 @@ class UsersGroup
     {
         if (!$this->attachments->contains($attachment)) {
             $this->attachments->add($attachment);
-            $attachment->setUserGroupId($this);
+            $attachment->setUserGroup($this);
         }
 
         return $this;
@@ -133,8 +133,8 @@ class UsersGroup
     {
         if ($this->attachments->removeElement($attachment)) {
             // set the owning side to null (unless already changed)
-            if ($attachment->getUserGroupId() === $this) {
-                $attachment->setUserGroupId(null);
+            if ($attachment->getUserGroup() === $this) {
+                $attachment->setUserGroup(null);
             }
         }
 
@@ -153,7 +153,7 @@ class UsersGroup
     {
         if (!$this->documents->contains($document)) {
             $this->documents->add($document);
-            $document->setAuthorId($this);
+            $document->setAuthor($this);
         }
 
         return $this;
@@ -163,8 +163,8 @@ class UsersGroup
     {
         if ($this->documents->removeElement($document)) {
             // set the owning side to null (unless already changed)
-            if ($document->getAuthorId() === $this) {
-                $document->setAuthorId(null);
+            if ($document->getAuthor() === $this) {
+                $document->setAuthor(null);
             }
         }
 
@@ -180,7 +180,7 @@ class UsersGroup
     {
         if (!$this->documents->contains($documentsReviewed)) {
             $this->documents->add($documentsReviewed);
-            $documentsReviewed->setAuthorId($this);
+            $documentsReviewed->setAuthor($this);
         }
     }
 
@@ -196,7 +196,7 @@ class UsersGroup
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
-            $comment->setUserId($this);
+            $comment->setUser($this);
         }
 
         return $this;
@@ -206,8 +206,8 @@ class UsersGroup
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($comment->getUserId() === $this) {
-                $comment->setUserId(null);
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
             }
         }
 
@@ -226,7 +226,7 @@ class UsersGroup
     {
         if (!$this->applicationLogs->contains($applicationLog)) {
             $this->applicationLogs->add($applicationLog);
-            $applicationLog->setUserId($this);
+            $applicationLog->setUser($this);
         }
 
         return $this;
@@ -236,8 +236,8 @@ class UsersGroup
     {
         if ($this->applicationLogs->removeElement($applicationLog)) {
             // set the owning side to null (unless already changed)
-            if ($applicationLog->getUserId() === $this) {
-                $applicationLog->setUserId(null);
+            if ($applicationLog->getUser() === $this) {
+                $applicationLog->setUser(null);
             }
         }
 

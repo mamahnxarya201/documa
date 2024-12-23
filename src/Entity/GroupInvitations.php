@@ -30,11 +30,11 @@ class GroupInvitations
 
     #[ORM\ManyToOne(inversedBy: 'groupInvitations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Status $status_id = null;
+    private ?Status $status = null;
 
     #[ORM\ManyToOne(inversedBy: 'groupInvitations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?group $group_id = null;
+    private ?group $group = null;
 
     public function getId(): ?Uuid
     {
@@ -89,26 +89,26 @@ class GroupInvitations
         return $this;
     }
 
-    public function getStatusId(): ?Status
+    public function getStatus(): ?Status
     {
-        return $this->status_id;
+        return $this->status;
     }
 
-    public function setStatusId(?Status $status_id): static
+    public function setStatus(?Status $status): static
     {
-        $this->status_id = $status_id;
+        $this->status = $status;
 
         return $this;
     }
 
-    public function getGroupId(): ?group
+    public function getGroup(): ?group
     {
-        return $this->group_id;
+        return $this->group;
     }
 
-    public function setGroupId(?group $group_id): static
+    public function setGroup(?group $group): static
     {
-        $this->group_id = $group_id;
+        $this->group = $group;
 
         return $this;
     }

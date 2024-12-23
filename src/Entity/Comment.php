@@ -18,7 +18,7 @@ class Comment
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?UsersGroup $user_id = null;
+    private ?UsersGroup $user = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -28,7 +28,7 @@ class Comment
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Document $document_id = null;
+    private ?Document $document = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -41,14 +41,14 @@ class Comment
         return $this->id;
     }
 
-    public function getUserId(): ?UsersGroup
+    public function getUser(): ?UsersGroup
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?UsersGroup $user_id): static
+    public function setUser(?UsersGroup $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
@@ -77,14 +77,14 @@ class Comment
         return $this;
     }
 
-    public function getDocumentId(): ?Document
+    public function getDocument(): ?Document
     {
-        return $this->document_id;
+        return $this->document;
     }
 
-    public function setDocumentId(?Document $document_id): static
+    public function setDocument(?Document $document): static
     {
-        $this->document_id = $document_id;
+        $this->document = $document;
 
         return $this;
     }

@@ -47,6 +47,12 @@ class UsersGroup
     #[ORM\OneToMany(targetEntity: Document::class, mappedBy: 'reviewer_id', orphanRemoval: true)]
     private Collection $documents_reviewed;
 
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'user_id', orphanRemoval: true)]
+    private Collection $comments;
+
 
 
     public function __construct()
@@ -54,6 +60,7 @@ class UsersGroup
         $this->attachments = new ArrayCollection();
         $this->documents = new ArrayCollection();
         $this->documents_reviewed = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -168,5 +175,35 @@ class UsersGroup
             $this->documents->add($documentsReviewed);
             $documentsReviewed->setAuthorId($this);
         }
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUserId() === $this) {
+                $comment->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 }

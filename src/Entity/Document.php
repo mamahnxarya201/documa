@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DocumentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Uid\Uuid;
@@ -24,7 +26,7 @@ class Document
     private ?UsersGroup $author_id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $notes = null;
+    private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
     #[ORM\JoinColumn(nullable: false)]
@@ -43,9 +45,17 @@ class Document
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $comment = null;
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'document_id', orphanRemoval: true)]
+    private Collection $comments;
 
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+    
     public function getId(): ?Uuid
     {
         return $this->id;
@@ -75,14 +85,14 @@ class Document
         return $this;
     }
 
-    public function getNotes(): ?string
+    public function getDescription(): ?string
     {
-        return $this->notes;
+        return $this->description;
     }
 
-    public function setNotes(string $notes): static
+    public function setDescription(string $description): static
     {
-        $this->notes = $notes;
+        $this->description = $description;
 
         return $this;
     }
@@ -147,14 +157,32 @@ class Document
         return $this;
     }
 
-    public function getComment(): ?array
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
     {
-        return $this->comment;
+        return $this->comments;
     }
 
-    public function setComment(?array $comment): static
+    public function addComment(Comment $comment): static
     {
-        $this->comment = $comment;
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setDocumentId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getDocumentId() === $this) {
+                $comment->setDocumentId(null);
+            }
+        }
 
         return $this;
     }

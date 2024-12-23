@@ -31,6 +31,9 @@ class Session
     #[ORM\Column]
     private ?\DateTimeImmutable $last_logout = null;
 
+    #[ORM\Column(type: 'uuid')]
+    private ?Uuid $session_id = null;
+
     public function getId(): ?Uuid
     {
         return $this->id;
@@ -92,6 +95,18 @@ class Session
     public function setLastLogout(\DateTimeImmutable $last_logout): static
     {
         $this->last_logout = $last_logout;
+
+        return $this;
+    }
+
+    public function getSessionId(): ?Uuid
+    {
+        return $this->session_id;
+    }
+
+    public function setSessionId(Uuid $session_id): static
+    {
+        $this->session_id = $session_id;
 
         return $this;
     }

@@ -1,5 +1,4 @@
 <?php
-// src/DataFixtures/AppFixtures.php
 
 namespace App\DataFixtures;
 
@@ -15,8 +14,6 @@ use App\Entity\GroupInvitations;
 use App\Entity\Document;
 use App\Entity\Comment;
 use App\Entity\UsersGroup;
-use function Symfony\Component\String\b;
-
 class BaseFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void

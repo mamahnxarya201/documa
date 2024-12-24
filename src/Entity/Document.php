@@ -51,9 +51,16 @@ class Document
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'document_id', orphanRemoval: true)]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, DocumentLink>
+     */
+    #[ORM\OneToMany(targetEntity: DocumentLink::class, mappedBy: 'document')]
+    private Collection $documentLinks;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->documentLinks = new ArrayCollection();
     }
     
     public function getId(): ?Uuid
@@ -181,6 +188,36 @@ class Document
             // set the owning side to null (unless already changed)
             if ($comment->getDocument() === $this) {
                 $comment->setDocument(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DocumentLink>
+     */
+    public function getDocumentLinks(): Collection
+    {
+        return $this->documentLinks;
+    }
+
+    public function addDocumentLink(DocumentLink $documentLink): static
+    {
+        if (!$this->documentLinks->contains($documentLink)) {
+            $this->documentLinks->add($documentLink);
+            $documentLink->setDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocumentLink(DocumentLink $documentLink): static
+    {
+        if ($this->documentLinks->removeElement($documentLink)) {
+            // set the owning side to null (unless already changed)
+            if ($documentLink->getDocument() === $this) {
+                $documentLink->setDocument(null);
             }
         }
 

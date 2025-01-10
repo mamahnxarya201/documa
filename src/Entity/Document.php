@@ -33,11 +33,11 @@ class Document
     private ?UsersGroup $reviewer = null;
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
-    private ?tags $tags = null;
+    private ?Tags $tags = null;
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?status $status = null;
+    private ?Status $status = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;

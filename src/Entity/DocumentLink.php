@@ -17,10 +17,10 @@ class DocumentLink
     private ?Uuid $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'documentLinks')]
-    private ?shareable $shareable = null;
+    private ?Shareable $shareable = null;
 
     #[ORM\ManyToOne(inversedBy: 'documentLinks')]
-    private ?document $document = null;
+    private ?Document $document = null;
 
     #[ORM\Column(length: 255)]
     private ?string $token = null;

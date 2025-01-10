@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\UsersGroup;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @extends ServiceEntityRepository<UsersGroup>
@@ -40,4 +41,17 @@ class UsersGroupRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function getListReviewerByGroupId($groupId)
+    {
+        return $this->createQueryBuilder('ug')
+            ->andWhere('ug.group = :groupId')
+            ->andWhere('ug.role = :roleId')
+            ->setParameter('groupId', $groupId) // Ensure $groupId is a valid UUID
+            ->setParameter('roleId', Uuid::fromString('0193f363-71dd-78f8-868c-3662c20a84a4'))   // Ensure $roleId is a valid UUID
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+
+    }
 }

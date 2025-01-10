@@ -3,22 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Document;
-use App\Repository\UsersGroupRepository;
-use Dom\DocumentType;
+use App\Form\CreateDocumentFormType;
+use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class DocumentController extends AbstractController
 {
+    public function __construct(
+        private UserService $userService,
+    )
+    {
+    }
+
     #[Route('/document', name: 'app_document_list')]
     public function index(): Response
     {
@@ -229,21 +228,24 @@ class DocumentController extends AbstractController
     }
 
     #[Route('/document/create', name: 'app_document_form')]
-    public function create_document_form(Request $request): Response
+    public function new(Request $request): Response
     {
+        $userId = $this->getUser()->getId();
+        $listUserGroup = $this->userService->getListUserGroupName($userId);
+
         $initialDocument = (new Document())
             ->setCreatedAt(new \DateTimeImmutable('now'))
             ->setUpdatedAt(new \DateTimeImmutable('now'));
 
-//        $reviewerOption = (new UsersGroupRepository())
+        $form = $this->createForm(CreateDocumentFormType::class, $initialDocument, [
+            'list_user_group' => $listUserGroup,
+        ]);
 
-        $form = $this->createFormBuilder($initialDocument)
-            ->add('Author', TextType::class)
-            ->add('Description', TextType::class)
-            ->add('Files', DropzoneType::class, ['mapped' => false])
-//            ->add('Reviewer', ChoiceType::class, [])
-            ->add('save', SubmitType::class, ['label' => 'Create Task'])
-            ->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Handle form submission and save the document
+        }
 
         return $this->render('document/create_document_form.html.twig', [
             'form' => $form->createView(),

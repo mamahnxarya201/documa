@@ -20,7 +20,7 @@ class UsersGroup
 
     #[ORM\ManyToOne(inversedBy: 'usersGroups')]
     #[ORM\JoinColumn(nullable: false)]
-    private group $group;
+    private Group $group;
 
     #[ORM\ManyToOne(inversedBy: 'usersGroups')]
     #[ORM\JoinColumn(nullable: false)]

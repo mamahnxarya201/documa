@@ -2,9 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Document;
+use App\Repository\UsersGroupRepository;
+use Dom\DocumentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class DocumentController extends AbstractController
 {
@@ -214,6 +225,28 @@ class DocumentController extends AbstractController
         return $this->render('document/detail_document.html.twig', [
             'controller_name' => 'DetailController',
             'document' => $document,
+        ]);
+    }
+
+    #[Route('/document/create', name: 'app_document_form')]
+    public function create_document_form(Request $request): Response
+    {
+        $initialDocument = (new Document())
+            ->setCreatedAt(new \DateTimeImmutable('now'))
+            ->setUpdatedAt(new \DateTimeImmutable('now'));
+
+//        $reviewerOption = (new UsersGroupRepository())
+
+        $form = $this->createFormBuilder($initialDocument)
+            ->add('Author', TextType::class)
+            ->add('Description', TextType::class)
+            ->add('Files', DropzoneType::class, ['mapped' => false])
+//            ->add('Reviewer', ChoiceType::class, [])
+            ->add('save', SubmitType::class, ['label' => 'Create Task'])
+            ->getForm();
+
+        return $this->render('document/create_document_form.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

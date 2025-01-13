@@ -1,11 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Detail Document{% endblock %}
-
-{% block stylesheets %}
-
-{% endblock %}
-
 {% block content %}
-    {{ form(form) }}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4>Create Task</h4>
+            </div>
+            <div class="card-body">
+                {{ form_start(form, {'attr': {'class': 'form', 'data-controller': 'create-document-form', 'data-action': 'change->create-document-form#toggleShareOptions'}}) }}
+                <div class="form-group">
+                    {{ form_label(form.author, 'Author', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form_label(form.group, 'Group', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.group, {'attr': {'class': 'form-select'}}) }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form_label(form.share, 'Share', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.share, {'attr': {'class': 'form-select'}}) }}
+                </div>
+                <div id="groupShareWrapper" class="form-group mt-3 d-none" data-create-document-form-target="groupShareWrapper">
+                    {{ form_label(form.groupShare, 'Select Groups', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.groupShare, {'attr': {'class': 'form-select', 'multiple': true}}) }}
+                </div>
+                <div id="userShareWrapper" class="form-group mt-3 d-none" data-create-document-form-target="userShareWrapper">
+                    {{ form_label(form.userShare, 'Select Users', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.userShare, {'attr': {'class': 'form-select', 'multiple': true}}) }}
+                </div>
+                <div id="externalShareWrapper" class="form-group mt-3 d-none" data-create-document-form-target="externalShareWrapper">
+                    {{ form_label(form.externalShare, 'External Link', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.externalShare, {'attr': {'class': 'form-select'}}) }}
+                </div>
+                <div id="usernameWrapper" class="form-group mt-3 d-none" data-create-document-form-target="usernameWrapper">
+                    {{ form_label(form.username, 'Username', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form_label(form.files, 'Files', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.files, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group mt-4">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

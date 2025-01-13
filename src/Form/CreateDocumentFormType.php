@@ -16,6 +16,8 @@ class CreateDocumentFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $listUserGroup = $options['list_user_group'];
+        $listExternalLinksExpiry = $options['list_external_links_expiry'];
+        $listUsers = $options['list_users'];
 
         $builder
             ->add('author', TextType::class)
@@ -26,6 +28,36 @@ class CreateDocumentFormType extends AbstractType
                 'placeholder' => 'Choose a group',
                 'required' => false,
             ])
+            ->add('share', ChoiceType::class, [
+                'choices' => [
+                    'Group' => 'group',
+                    'User' => 'user',
+                    'External Link' => 'external_link',
+                ],
+                'mapped' => false,
+                'placeholder' => 'Select Share Option',
+            ])
+            ->add('groupShare', ChoiceType::class, [
+                'choices' => $listUserGroup,
+                'mapped' => false,
+                'required' => false,
+                'multiple' => true,
+            ])
+            ->add('userShare', ChoiceType::class, [
+                'choices' => $listUsers,
+                'mapped' => false,
+                'required' => false,
+                'multiple' => true,
+            ])
+            ->add('externalShare', ChoiceType::class, [
+                'choices' => $listExternalLinksExpiry,
+                'mapped' => false,
+                'required' => false,
+            ])
+            ->add('username', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+            ])
             ->add('files', DropzoneType::class, [
                 'mapped' => false,
             ])
@@ -34,11 +66,15 @@ class CreateDocumentFormType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $config = [
             'data_class' => Document::class,
-            'list_user_group' => [], // Default value for the custom option
-        ]);
+            'list_user_group' => [],
+            'list_users' => [],
+            'list_external_links_expiry' => [],
+        ];
 
-        $resolver->setRequired('list_user_group'); // Ensure the option is passed
+        $resolver->setDefaults($config);
+
+        $resolver->setRequired(array_keys($config));
     }
 }

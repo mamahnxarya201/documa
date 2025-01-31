@@ -22,11 +22,31 @@
                 </div>
                 <div class="form-group mt-3">
                     {{ form_label(form.share, 'Share', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(form.share, {'attr': {'class': 'form-select'}}) }}
+                    {% for choice in form.share %}
+                        <div class="form-check">
+                            {{ form_widget(choice, {'attr': {'class': 'form-check-input'}}) }}
+                            {{ form_label(choice, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                        </div>
+                    {% endfor %}
                 </div>
+
                 <div id="groupShareWrapper" class="form-group mt-3 d-none" data-create-document-form-target="groupShareWrapper">
                     {{ form_label(form.groupShare, 'Select Groups', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(form.groupShare, {'attr': {'class': 'form-select', 'multiple': true}}) }}
+                    <div class="dropdown-center">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Group Option
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% for choice in form.groupShare %}
+                                <li class="dropdown-item">
+                                    <div class="form-check">
+                                        {{ form_widget(choice, {'attr': {'class': 'form-check-input'}}) }}
+                                        {{ form_label(choice, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
                 <div id="userShareWrapper" class="form-group mt-3 d-none" data-create-document-form-target="userShareWrapper">
                     {{ form_label(form.userShare, 'Select Users', {'label_attr': {'class': 'form-label'}}) }}

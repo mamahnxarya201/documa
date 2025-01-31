@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Document;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,6 +19,7 @@ class CreateDocumentFormType extends AbstractType
         $listUserGroup = $options['list_user_group'];
         $listExternalLinksExpiry = $options['list_external_links_expiry'];
         $listUsers = $options['list_users'];
+        $listShareable = $options['list_shareable'];
 
         $builder
             ->add('author', TextType::class)
@@ -29,18 +31,18 @@ class CreateDocumentFormType extends AbstractType
                 'required' => false,
             ])
             ->add('share', ChoiceType::class, [
-                'choices' => [
-                    'Group' => 'group',
-                    'User' => 'user',
-                    'External Link' => 'external_link',
-                ],
+                'choices' => $listShareable,
                 'mapped' => false,
                 'placeholder' => 'Select Share Option',
+                'multiple' => true,
+                'expanded' => true,
             ])
             ->add('groupShare', ChoiceType::class, [
-                'choices' => $listUserGroup,
+                'choices' => array_flip($listUserGroup),
                 'mapped' => false,
+                'placeholder' => 'Choose a group',
                 'required' => false,
+                'expanded' => true,
                 'multiple' => true,
             ])
             ->add('userShare', ChoiceType::class, [
@@ -71,6 +73,10 @@ class CreateDocumentFormType extends AbstractType
             'list_user_group' => [],
             'list_users' => [],
             'list_external_links_expiry' => [],
+            'list_shareable' => [
+                'Group' => 'group',
+                'External Links' => 'external_links'
+            ],
         ];
 
         $resolver->setDefaults($config);

@@ -24,7 +24,7 @@
                     {{ form_label(form.share, 'Share', {'label_attr': {'class': 'form-label'}}) }}
                     {% for choice in form.share %}
                         <div class="form-check">
-                            {{ form_widget(choice, {'attr': {'class': 'form-check-input'}}) }}
+                            {{  form_widget(choice, {'attr': {'class': 'form-check-input'}}) }}
                             {{ form_label(choice, null, {'label_attr': {'class': 'form-check-label'}}) }}
                         </div>
                     {% endfor %}
@@ -48,6 +48,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div id="userShareWrapper" class="form-group mt-3 d-none" data-create-document-form-target="userShareWrapper">
                     {{ form_label(form.userShare, 'Select Users', {'label_attr': {'class': 'form-label'}}) }}
                     {{ form_widget(form.userShare, {'attr': {'class': 'form-select', 'multiple': true}}) }}

@@ -161,4 +161,21 @@ class Group
 
         return $this;
     }
+
+    public function getUsers(): Collection
+    {
+        return $this->usersGroups->map(function (UsersGroup $usersGroup) {
+            return $usersGroup->getUser();
+        });
+    }
+
+    public function getUsersWithRoles(): Collection
+    {
+        return $this->usersGroups->map(function (UsersGroup $usersGroup) {
+            return [
+                'user' => $usersGroup->getUser(),
+                'role' => $usersGroup->getRole(),
+            ];
+        })->toArray();
+    }
 }
